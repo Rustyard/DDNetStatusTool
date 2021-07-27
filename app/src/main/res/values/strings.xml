@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DDNetStatusTool</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textStatusTool">Rank Status Tool</string>
+    <string name="textPlayerSearch">Player Search</string>
+    <string name="describeTitlePic">Title Picture</string>
+    <string name="textCompare">Compare</string>
+    <string name="textExit">Exit</string>
+    <string name="textPlayerIDHint">Input player name</string>
+    <string name="textSearch">Search</string>
+</resources>

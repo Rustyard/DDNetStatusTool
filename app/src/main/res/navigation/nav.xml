@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.rustyard.ddnetstatustool.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_singleFragment"
+            app:destination="@id/singleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_compareFragment"
+            app:destination="@id/compareFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/compareFragment"
+        android:name="com.rustyard.ddnetstatustool.CompareFragment"
+        android:label="fragment_compare"
+        tools:layout="@layout/fragment_compare" />
+    <fragment
+        android:id="@+id/singleFragment"
+        android:name="com.rustyard.ddnetstatustool.SingleFragment"
+        android:label="fragment_single"
+        tools:layout="@layout/fragment_single" />
+</navigation>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <Button
+        android:id="@+id/buttonPlayerSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textPlayerSearch"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCompareEntry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+    <Button
+        android:id="@+id/buttonCompareEntry"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/textCompare"
+        app:layout_constraintBottom_toTopOf="@+id/buttonExit"
+        app:layout_constraintEnd_toEndOf="@+id/buttonPlayerSearch"
+        app:layout_constraintStart_toStartOf="@+id/buttonPlayerSearch"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlayerSearch" />
+
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/textExit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCompareEntry"
+        app:layout_constraintStart_toStartOf="@+id/buttonCompareEntry"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCompareEntry" />
+
+    <ImageView
+        android:id="@+id/imageViewTitle"
+        android:layout_width="332dp"
+        android:layout_height="211dp"
+        android:contentDescription="@string/describeTitlePic"
+        android:src="@drawable/ic_ddnet2"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="@string/textStatusTool"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPlayerSearch"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageViewTitle"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewTitle" />
+</androidx.constraintlayout.widget.ConstraintLayout>
