@@ -21,20 +21,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/textCompare"
-        app:layout_constraintBottom_toTopOf="@+id/buttonExit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonPlayerSearch"
         app:layout_constraintStart_toStartOf="@+id/buttonPlayerSearch"
         app:layout_constraintTop_toBottomOf="@+id/buttonPlayerSearch" />
-
-    <Button
-        android:id="@+id/buttonExit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/textExit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/buttonCompareEntry"
-        app:layout_constraintStart_toStartOf="@+id/buttonCompareEntry"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCompareEntry" />
 
     <ImageView
         android:id="@+id/imageViewTitle"

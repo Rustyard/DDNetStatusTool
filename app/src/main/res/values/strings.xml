@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">DDNetStatusTool</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textStatusTool">Rank Status Tool</string>
     <string name="textPlayerSearch">Player Search</string>
     <string name="describeTitlePic">Title Picture</string>
@@ -9,4 +7,34 @@
     <string name="textExit">Exit</string>
     <string name="textPlayerIDHint">Input player name</string>
     <string name="textSearch">Search</string>
+
+    <string name="textPlayerID">Player ID: </string>
+    <string name="textPlayerTotalRank">Rank (total points): </string>
+    <string name="textPlayerTotalPoints">Total Points: </string>
+    <string name="textPlayerFirstFinish">First Finish: </string>
+    <string name="textPlayerLastFinish">Last Finish: </string>
+    <string name="textPlayerMonthlyPoints">Points (monthly): </string>
+    <string name="textPlayerMonthlyRank">Rank (monthly): </string>
+    <string name="textPlayerWeeklyPoints">Points (weekly): </string>
+    <string name="textPlayerWeeklyRank">Rank (weekly): </string>
+    <string name="textPlayerNovicePoints">Points (novice): </string>
+    <string name="textPlayerNoviceRank">Rank (novice): </string>
+    <string name="textPlayerModeratePoints">Points (moderate): </string>
+    <string name="textPlayerModerateRank">Rank (moderate): </string>
+    <string name="textPlayerBrutalPoints">Points (brutal): </string>
+    <string name="textPlayerBrutalRank">Rank (brutal): </string>
+    <string name="textPlayerInsanePoints">Points (insane): </string>
+    <string name="textPlayerInsaneRank">Rank (insane): </string>
+    <string name="textPlayerDummyPoints">Points (dummy): </string>
+    <string name="textPlayerDummyRank">Rank (dummy): </string>
+    <string name="textPlayerDDMaxPoints">Points (DDMax): </string>
+    <string name="textPlayerDDMaxRank">Rank (DDMax): </string>
+    <string name="textPlayerSoloPoints">Points (solo): </string>
+    <string name="textPlayerSoloRank">Rank (solo): </string>
+    <string name="textPlayerOldschoolPoints">Points (oldschool): </string>
+    <string name="textPlayerOldschoolRank">Rank (oldschool): </string>
+    <string name="textPlayerRacePoints">Points (race): </string>
+    <string name="textPlayerRaceRank">Rank (race): </string>
+    <string name="textNoData">No Data</string>
+    <string name="textLoading">Loading…</string>
 </resources>

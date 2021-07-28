@@ -1,6 +1,9 @@
 package com.rustyard.ddnetstatustool;
 
+import android.app.Activity;
+
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import org.jsoup.HttpStatusException;
@@ -10,6 +13,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,49 +36,33 @@ public class PlayerInfoViewModel extends ViewModel {
     public static final int STATUS_REGEX_ERROR_so = -13;
     public static final int STATUS_REGEX_ERROR_ra = -14;
 
+    public PlayerInfo player1Info;
+    public PlayerInfo player2Info;
 
-    private String playerID         = "";
-
-    private String totalPointsRank  = "";
-    private String totalPoints      = "";
-    private String lastFinish       = "";
-    private String firstFinish      = "";
-    private String monthlyPoints    = "";
-    private String monthlyRank      = "";
-    private String weeklyPoints     = "";
-    private String weeklyRank       = "";
-    private String novicePoints     = "";
-    private String noviceRank       = "";
-    private String moderatePoints   = "";
-    private String moderateRank     = "";
-    private String brutalPoints     = "";
-    private String brutalRank       = "";
-    private String insanePoints     = "";
-    private String insaneRank       = "";
-    private String dummyPoints      = "";
-    private String dummyRank        = "";
-    private String ddmaxPoints      = "";
-    private String ddmaxRank        = "";
-    private String soloPoints       = "";
-    private String soloRank         = "";
-    private String oldschoolPoints  = "";
-    private String oldschoolRank    = "";
-    private String racePoints       = "";
-    private String raceRank         = "";
+    public MutableLiveData<List<String>> p1InfoList;
+    public MutableLiveData<List<String>> compareInfoList;
 
     // pattern used for "<rank>. with <points> points"
     private final String rpPatternString = "(\\d+)\\D+(\\d+)\\D+";
     private final Pattern rpPattern = Pattern.compile(rpPatternString);
 
+    public PlayerInfoViewModel() {
+        player1Info = new PlayerInfo();
+        player2Info = new PlayerInfo();
+        p1InfoList = new MutableLiveData<>();
+        compareInfoList = new MutableLiveData<>();
+    }
+
     /**
-     * Crawl specified player data from ddnet.tw
+     * Crawl specified player data from ddnet.tw, store data into PlayerInfo class
      * @param playerID the player name(ID)
+     * @param info the player info class, use player1Info or player2Info inside this class
      * @return crawl status
      */
-    public int crawl(String playerID) {
+    public int crawl(String playerID, PlayerInfo info) {
         Document ddnetPage = null;
 
-        this.playerID = playerID;
+        info.setPlayerID(UnicodeID.parse(playerID));
 
         try {
             ddnetPage = Jsoup.connect("https://ddnet.tw/players/" + playerID + "/").get();
@@ -87,14 +76,14 @@ public class PlayerInfoViewModel extends ViewModel {
         }
 
         if (ddnetPage != null) {
-            return selectInfoFromDocument(ddnetPage);
+            return selectInfoFromDocument(ddnetPage, info);
         }
         else {
             return STATUS_NO_RESULT;
         }
     }
 
-    private int selectInfoFromDocument(@NonNull Document ddnetPage) {
+    private int selectInfoFromDocument(@NonNull Document ddnetPage, PlayerInfo info) {
         Matcher matcher;
         Elements element;
 
@@ -102,29 +91,29 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select(".ladder:nth-child(1) .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            totalPointsRank = matcher.group(1);
-            totalPoints = matcher.group(2);
+            info.setTotalPointsRank(matcher.group(1));
+            info.setTotalPoints(matcher.group(2));
         } else return STATUS_REGEX_ERROR_t;
 
 
         // get the first finish record
         element = ddnetPage.select(".personal-result");
-        firstFinish = element.text();
+        info.setFirstFinish(element.text());
 
         // get the newest finish record
         element = ddnetPage.select(".block7+ .ladder tr:nth-child(1) td");
-        lastFinish = element.text();
+        info.setLastFinish(element.text());
 
         // get the monthly points ranking
         element = ddnetPage.select("#global br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            monthlyRank = matcher.group(1);
-            monthlyPoints = matcher.group(2);
+            info.setMonthlyRank(matcher.group(1));
+            info.setMonthlyPoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            monthlyRank = "Unranked";
-            monthlyPoints = "0";
+            info.setMonthlyRank("Unranked");
+            info.setMonthlyPoints("0");
         }
         else return STATUS_REGEX_ERROR_m;
 
@@ -132,12 +121,12 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#global .ladder:nth-child(6) .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            weeklyRank = matcher.group(1);
-            weeklyPoints = matcher.group(2);
+            info.setWeeklyRank(matcher.group(1));
+            info.setWeeklyPoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            weeklyRank = "Unranked";
-            weeklyPoints = "0";
+            info.setWeeklyRank("Unranked");
+            info.setWeeklyPoints("0");
         }
         else return STATUS_REGEX_ERROR_w;
 
@@ -154,12 +143,12 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#Novice br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            noviceRank = matcher.group(1);
-            novicePoints = matcher.group(2);
+            info.setNoviceRank(matcher.group(1));
+            info.setNovicePoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            noviceRank = "Unranked";
-            novicePoints = "0";
+            info.setNoviceRank("Unranked");
+            info.setNovicePoints("0");
         }
         else return STATUS_REGEX_ERROR_n;
 
@@ -167,12 +156,12 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#Moderate br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            moderateRank = matcher.group(1);
-            moderatePoints = matcher.group(2);
+            info.setModerateRank(matcher.group(1));
+            info.setModeratePoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            moderateRank = "Unranked";
-            moderatePoints = "0";
+            info.setModerateRank("Unranked");
+            info.setModeratePoints("0");
         }
         else return STATUS_REGEX_ERROR_mo;
 
@@ -180,12 +169,12 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#Brutal br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            brutalRank = matcher.group(1);
-            brutalPoints = matcher.group(2);
+            info.setBrutalRank(matcher.group(1));
+            info.setBrutalPoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            brutalRank = "Unranked";
-            brutalPoints = "0";
+            info.setBrutalRank("Unranked");
+            info.setBrutalPoints("0");
         }
         else return STATUS_REGEX_ERROR_br;
 
@@ -193,12 +182,12 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#Insane br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            insaneRank = matcher.group(1);
-            insanePoints = matcher.group(2);
+            info.setInsaneRank(matcher.group(1));
+            info.setInsanePoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            insaneRank = "Unranked";
-            insanePoints = "0";
+            info.setInsaneRank("Unranked");
+            info.setInsanePoints("0");
         }
         else return STATUS_REGEX_ERROR_in;
 
@@ -206,12 +195,12 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#Dummy br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            dummyRank = matcher.group(1);
-            dummyPoints = matcher.group(2);
+            info.setDummyRank(matcher.group(1));
+            info.setDummyPoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            dummyRank = "Unranked";
-            dummyPoints = "0";
+            info.setDummyRank("Unranked");
+            info.setDummyPoints("0");
         }
         else return STATUS_REGEX_ERROR_dm;
 
@@ -219,12 +208,12 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#DDmaX br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            ddmaxRank = matcher.group(1);
-            ddmaxPoints = matcher.group(2);
+            info.setDdmaxRank(matcher.group(1));
+            info.setDdmaxPoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            ddmaxRank = "Unranked";
-            ddmaxPoints = "0";
+            info.setDdmaxRank("Unranked");
+            info.setDdmaxPoints("0");
         }
         else return STATUS_REGEX_ERROR_dx;
 
@@ -232,12 +221,12 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#Oldschool br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            oldschoolRank = matcher.group(1);
-            oldschoolPoints = matcher.group(2);
+            info.setOldschoolRank(matcher.group(1));
+            info.setOldschoolPoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            oldschoolRank = "Unranked";
-            oldschoolPoints = "0";
+            info.setOldschoolRank("Unranked");
+            info.setOldschoolPoints("0");
         }
         else return STATUS_REGEX_ERROR_ol;
 
@@ -245,134 +234,66 @@ public class PlayerInfoViewModel extends ViewModel {
         element = ddnetPage.select("#Solo br+ .ladder .pers-result");
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            soloRank = matcher.group(1);
-            soloPoints = matcher.group(2);
+            info.setSoloRank(matcher.group(1));
+            info.setSoloPoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            soloRank = "Unranked";
-            soloPoints = "0";
+            info.setSoloRank("Unranked");
+            info.setSoloPoints("0");
         }else return STATUS_REGEX_ERROR_so;
 
         // Race maps "rank and points"
         matcher = rpPattern.matcher(element.text());
         if (matcher.find()) {
-            raceRank = matcher.group(1);
-            racePoints = matcher.group(2);
+            info.setRaceRank(matcher.group(1));
+            info.setRacePoints(matcher.group(2));
         }
         else if (element.text().equals("Unranked")) {
-            raceRank = "Unranked";
-            racePoints = "0";
+            info.setRaceRank("Unranked");
+            info.setRacePoints("0");
         }
         else return STATUS_REGEX_ERROR_ra;
 
         return STATUS_SUCCESS;
     }
 
-    public String getPlayerID() {
-        return playerID;
-    }
+    public void generateP1Info(Activity activity) {
+        if (player1Info.getPlayerID().isEmpty()) {
+            ArrayList<String> temp = new ArrayList<>();
+            temp.add(activity.getString(R.string.textNoData));
+            p1InfoList.setValue(temp);
+            return;
+        }
 
-    public String getTotalPointsRank() {
-        return totalPointsRank;
-    }
-
-    public String getTotalPoints() {
-        return totalPoints;
-    }
-
-    public String getLastFinish() {
-        return lastFinish;
-    }
-
-    public String getFirstFinish() {
-        return firstFinish;
-    }
-
-    public String getMonthlyPoints() {
-        return monthlyPoints;
-    }
-
-    public String getMonthlyRank() {
-        return monthlyRank;
-    }
-
-    public String getWeeklyPoints() {
-        return weeklyPoints;
-    }
-
-    public String getWeeklyRank() {
-        return weeklyRank;
-    }
-
-    public String getNovicePoints() {
-        return novicePoints;
-    }
-
-    public String getNoviceRank() {
-        return noviceRank;
-    }
-
-    public String getModeratePoints() {
-        return moderatePoints;
-    }
-
-    public String getModerateRank() {
-        return moderateRank;
-    }
-
-    public String getBrutalPoints() {
-        return brutalPoints;
-    }
-
-    public String getBrutalRank() {
-        return brutalRank;
-    }
-
-    public String getInsanePoints() {
-        return insanePoints;
-    }
-
-    public String getInsaneRank() {
-        return insaneRank;
-    }
-
-    public String getDummyPoints() {
-        return dummyPoints;
-    }
-
-    public String getDummyRank() {
-        return dummyRank;
-    }
-
-    public String getDdmaxPoints() {
-        return ddmaxPoints;
-    }
-
-    public String getDdmaxRank() {
-        return ddmaxRank;
-    }
-
-    public String getSoloPoints() {
-        return soloPoints;
-    }
-
-    public String getSoloRank() {
-        return soloRank;
-    }
-
-    public String getOldschoolPoints() {
-        return oldschoolPoints;
-    }
-
-    public String getOldschoolRank() {
-        return oldschoolRank;
-    }
-
-    public String getRacePoints() {
-        return racePoints;
-    }
-
-    public String getRaceRank() {
-        return raceRank;
+        ArrayList<String> infoList = new ArrayList<>();
+        infoList.add(activity.getString(R.string.textPlayerID) + player1Info.getPlayerID());
+        infoList.add(activity.getString(R.string.textPlayerTotalPoints) + player1Info.getTotalPoints());
+        infoList.add(activity.getString(R.string.textPlayerTotalRank) + player1Info.getTotalPointsRank());
+        infoList.add(activity.getString(R.string.textPlayerFirstFinish) + player1Info.getFirstFinish());
+        infoList.add(activity.getString(R.string.textPlayerLastFinish) + player1Info.getLastFinish());
+        infoList.add(activity.getString(R.string.textPlayerMonthlyPoints) + player1Info.getMonthlyPoints());
+        infoList.add(activity.getString(R.string.textPlayerMonthlyRank) + player1Info.getMonthlyRank());
+        infoList.add(activity.getString(R.string.textPlayerWeeklyPoints) + player1Info.getWeeklyPoints());
+        infoList.add(activity.getString(R.string.textPlayerWeeklyRank) + player1Info.getWeeklyRank());
+        infoList.add(activity.getString(R.string.textPlayerNovicePoints) + player1Info.getNovicePoints());
+        infoList.add(activity.getString(R.string.textPlayerNoviceRank) + player1Info.getNoviceRank());
+        infoList.add(activity.getString(R.string.textPlayerModeratePoints) + player1Info.getModeratePoints());
+        infoList.add(activity.getString(R.string.textPlayerModerateRank) + player1Info.getModerateRank());
+        infoList.add(activity.getString(R.string.textPlayerBrutalPoints) + player1Info.getBrutalPoints());
+        infoList.add(activity.getString(R.string.textPlayerBrutalRank) + player1Info.getBrutalRank());
+        infoList.add(activity.getString(R.string.textPlayerInsanePoints) + player1Info.getInsanePoints());
+        infoList.add(activity.getString(R.string.textPlayerInsaneRank) + player1Info.getInsaneRank());
+        infoList.add(activity.getString(R.string.textPlayerDummyPoints) + player1Info.getDummyPoints());
+        infoList.add(activity.getString(R.string.textPlayerDummyRank) + player1Info.getDummyRank());
+        infoList.add(activity.getString(R.string.textPlayerDDMaxPoints) + player1Info.getDdmaxPoints());
+        infoList.add(activity.getString(R.string.textPlayerDDMaxRank) + player1Info.getDdmaxRank());
+        infoList.add(activity.getString(R.string.textPlayerSoloPoints) + player1Info.getSoloPoints());
+        infoList.add(activity.getString(R.string.textPlayerSoloRank) + player1Info.getSoloRank());
+        infoList.add(activity.getString(R.string.textPlayerOldschoolPoints) + player1Info.getOldschoolPoints());
+        infoList.add(activity.getString(R.string.textPlayerOldschoolRank) + player1Info.getOldschoolRank());
+        infoList.add(activity.getString(R.string.textPlayerRacePoints) + player1Info.getRacePoints());
+        infoList.add(activity.getString(R.string.textPlayerRaceRank) + player1Info.getRaceRank());
+        // use postValue not setValue
+        p1InfoList.postValue(infoList);
     }
 }
