@@ -130,11 +130,8 @@ public class PlayerInfoViewModel extends ViewModel {
         }
         else return STATUS_REGEX_ERROR_w;
 
-        // TODO: add a online status (get information from status.tw)
-        // NOTE: status.tw is slow to connect from China so this feature may be gave up.
 
         // TODO: add a map finish record searcher
-
         // TODO: add a country display
         // TODO: show the country in picture
 
@@ -266,34 +263,150 @@ public class PlayerInfoViewModel extends ViewModel {
         }
 
         ArrayList<String> infoList = new ArrayList<>();
-        infoList.add(activity.getString(R.string.textPlayerID) + player1Info.getPlayerID());
-        infoList.add(activity.getString(R.string.textPlayerTotalPoints) + player1Info.getTotalPoints());
-        infoList.add(activity.getString(R.string.textPlayerTotalRank) + player1Info.getTotalPointsRank());
-        infoList.add(activity.getString(R.string.textPlayerFirstFinish) + player1Info.getFirstFinish());
-        infoList.add(activity.getString(R.string.textPlayerLastFinish) + player1Info.getLastFinish());
-        infoList.add(activity.getString(R.string.textPlayerMonthlyPoints) + player1Info.getMonthlyPoints());
-        infoList.add(activity.getString(R.string.textPlayerMonthlyRank) + player1Info.getMonthlyRank());
-        infoList.add(activity.getString(R.string.textPlayerWeeklyPoints) + player1Info.getWeeklyPoints());
-        infoList.add(activity.getString(R.string.textPlayerWeeklyRank) + player1Info.getWeeklyRank());
-        infoList.add(activity.getString(R.string.textPlayerNovicePoints) + player1Info.getNovicePoints());
-        infoList.add(activity.getString(R.string.textPlayerNoviceRank) + player1Info.getNoviceRank());
-        infoList.add(activity.getString(R.string.textPlayerModeratePoints) + player1Info.getModeratePoints());
-        infoList.add(activity.getString(R.string.textPlayerModerateRank) + player1Info.getModerateRank());
-        infoList.add(activity.getString(R.string.textPlayerBrutalPoints) + player1Info.getBrutalPoints());
-        infoList.add(activity.getString(R.string.textPlayerBrutalRank) + player1Info.getBrutalRank());
-        infoList.add(activity.getString(R.string.textPlayerInsanePoints) + player1Info.getInsanePoints());
-        infoList.add(activity.getString(R.string.textPlayerInsaneRank) + player1Info.getInsaneRank());
-        infoList.add(activity.getString(R.string.textPlayerDummyPoints) + player1Info.getDummyPoints());
-        infoList.add(activity.getString(R.string.textPlayerDummyRank) + player1Info.getDummyRank());
-        infoList.add(activity.getString(R.string.textPlayerDDMaxPoints) + player1Info.getDdmaxPoints());
-        infoList.add(activity.getString(R.string.textPlayerDDMaxRank) + player1Info.getDdmaxRank());
-        infoList.add(activity.getString(R.string.textPlayerSoloPoints) + player1Info.getSoloPoints());
-        infoList.add(activity.getString(R.string.textPlayerSoloRank) + player1Info.getSoloRank());
-        infoList.add(activity.getString(R.string.textPlayerOldschoolPoints) + player1Info.getOldschoolPoints());
-        infoList.add(activity.getString(R.string.textPlayerOldschoolRank) + player1Info.getOldschoolRank());
-        infoList.add(activity.getString(R.string.textPlayerRacePoints) + player1Info.getRacePoints());
-        infoList.add(activity.getString(R.string.textPlayerRaceRank) + player1Info.getRaceRank());
+        infoList.add(activity.getString(R.string.textPlayerID) +                 " " +       player1Info.getPlayerID());
+
+        infoList.add(activity.getString(R.string.textPlayerTotalPoints) +        " " +       player1Info.getTotalPoints());
+        infoList.add(activity.getString(R.string.textPlayerTotalRank) +          " " +       player1Info.getTotalPointsRank());
+
+        infoList.add(activity.getString(R.string.textPlayerFirstFinish) +        " " +       player1Info.getFirstFinish());
+        infoList.add(activity.getString(R.string.textPlayerLastFinish) +         " " +       player1Info.getLastFinish());
+
+        infoList.add(activity.getString(R.string.textPlayerMonthlyPoints) +      " " +       player1Info.getMonthlyPoints());
+        infoList.add(activity.getString(R.string.textPlayerMonthlyRank) +        " " +       player1Info.getMonthlyRank());
+
+        infoList.add(activity.getString(R.string.textPlayerWeeklyPoints) +       " " +       player1Info.getWeeklyPoints());
+        infoList.add(activity.getString(R.string.textPlayerWeeklyRank) +         " " +       player1Info.getWeeklyRank());
+
+        infoList.add(activity.getString(R.string.textPlayerNovicePoints) +       " " +       player1Info.getNovicePoints());
+        infoList.add(activity.getString(R.string.textPlayerNoviceRank) +         " " +       player1Info.getNoviceRank());
+
+        infoList.add(activity.getString(R.string.textPlayerModeratePoints) +     " " +       player1Info.getModeratePoints());
+        infoList.add(activity.getString(R.string.textPlayerModerateRank) +       " " +       player1Info.getModerateRank());
+
+        infoList.add(activity.getString(R.string.textPlayerBrutalPoints) +       " " +       player1Info.getBrutalPoints());
+        infoList.add(activity.getString(R.string.textPlayerBrutalRank) +         " " +       player1Info.getBrutalRank());
+
+        infoList.add(activity.getString(R.string.textPlayerInsanePoints) +       " " +       player1Info.getInsanePoints());
+        infoList.add(activity.getString(R.string.textPlayerInsaneRank) +         " " +       player1Info.getInsaneRank());
+
+        infoList.add(activity.getString(R.string.textPlayerDummyPoints) +        " " +       player1Info.getDummyPoints());
+        infoList.add(activity.getString(R.string.textPlayerDummyRank) +          " " +       player1Info.getDummyRank());
+
+        infoList.add(activity.getString(R.string.textPlayerDDMaxPoints) +        " " +       player1Info.getDdmaxPoints());
+        infoList.add(activity.getString(R.string.textPlayerDDMaxRank) +          " " +       player1Info.getDdmaxRank());
+
+        infoList.add(activity.getString(R.string.textPlayerSoloPoints) +         " " +       player1Info.getSoloPoints());
+        infoList.add(activity.getString(R.string.textPlayerSoloRank) +           " " +       player1Info.getSoloRank());
+
+        infoList.add(activity.getString(R.string.textPlayerOldschoolPoints) +    " " +       player1Info.getOldschoolPoints());
+        infoList.add(activity.getString(R.string.textPlayerOldschoolRank) +      " " +       player1Info.getOldschoolRank());
+
+        infoList.add(activity.getString(R.string.textPlayerRacePoints) +         " " +       player1Info.getRacePoints());
+        infoList.add(activity.getString(R.string.textPlayerRaceRank) +           " " +       player1Info.getRaceRank());
         // use postValue not setValue
         p1InfoList.postValue(infoList);
+    }
+
+    public void generateCompareInfo(Activity activity) {
+        if (player1Info.getPlayerID().isEmpty() || player2Info.getPlayerID().isEmpty()) {
+            ArrayList<String> temp = new ArrayList<>();
+            temp.add(activity.getString(R.string.textNoData));
+            p1InfoList.setValue(temp);
+            return;
+        }
+
+        ArrayList<String> infoList = new ArrayList<>();
+
+        infoList.add(activity.getString(R.string.textPlayer1ID) + " " + player1Info.getPlayerID());
+        infoList.add(activity.getString(R.string.textPlayer2ID) + " " + player2Info.getPlayerID());
+
+        infoList.add(activity.getString(R.string.textCompareTwoPlayers));
+
+        infoList.add(activity.getString(R.string.textPlayerTotalPoints) + " " +
+                stringNumberSubtract(player1Info.getTotalPoints(), player2Info.getTotalPoints()));
+        infoList.add(activity.getString(R.string.textPlayer1TotalRank) +          " " +       player1Info.getTotalPointsRank());
+        infoList.add(activity.getString(R.string.textPlayer2TotalRank) +          " " +       player2Info.getTotalPointsRank());
+
+        infoList.add(activity.getString(R.string.textPlayer1FirstFinish) +        " " +       player1Info.getFirstFinish());
+        infoList.add(activity.getString(R.string.textPlayer2FirstFinish) +        " " +       player2Info.getFirstFinish());
+        infoList.add(activity.getString(R.string.textPlayer1LastFinish) +         " " +       player1Info.getLastFinish());
+        infoList.add(activity.getString(R.string.textPlayer2LastFinish) +         " " +       player2Info.getLastFinish());
+
+        infoList.add(activity.getString(R.string.textPlayerMonthlyPoints) +      " " +
+                stringNumberSubtract(player1Info.getMonthlyPoints(), player2Info.getMonthlyPoints()));
+        infoList.add(activity.getString(R.string.textPlayer1MonthlyRank) +        " " +       player1Info.getMonthlyRank());
+        infoList.add(activity.getString(R.string.textPlayer2MonthlyRank) +        " " +       player2Info.getMonthlyRank());
+
+        infoList.add(activity.getString(R.string.textPlayerWeeklyPoints) +       " " +
+                stringNumberSubtract(player1Info.getWeeklyPoints(), player2Info.getWeeklyPoints()));
+        infoList.add(activity.getString(R.string.textPlayer1WeeklyRank) +         " " +       player1Info.getWeeklyRank());
+        infoList.add(activity.getString(R.string.textPlayer2WeeklyRank) +         " " +       player2Info.getWeeklyRank());
+
+        infoList.add(activity.getString(R.string.textPlayerNovicePoints) +       " " +
+                stringNumberSubtract(player1Info.getNovicePoints(), player2Info.getNovicePoints()));
+        infoList.add(activity.getString(R.string.textPlayer1NoviceRank) +         " " +       player1Info.getNoviceRank());
+        infoList.add(activity.getString(R.string.textPlayer2NoviceRank) +         " " +       player2Info.getNoviceRank());
+
+        infoList.add(activity.getString(R.string.textPlayerModeratePoints) +     " " +
+                stringNumberSubtract(player1Info.getModeratePoints(), player2Info.getModeratePoints()));
+        infoList.add(activity.getString(R.string.textPlayer1ModerateRank) +       " " +       player1Info.getModerateRank());
+        infoList.add(activity.getString(R.string.textPlayer2ModerateRank) +       " " +       player2Info.getModerateRank());
+
+        infoList.add(activity.getString(R.string.textPlayerBrutalPoints) +       " " +
+                stringNumberSubtract(player1Info.getBrutalPoints(), player2Info.getBrutalPoints()));
+        infoList.add(activity.getString(R.string.textPlayer1BrutalRank) +         " " +       player1Info.getBrutalRank());
+        infoList.add(activity.getString(R.string.textPlayer2BrutalRank) +         " " +       player2Info.getBrutalRank());
+
+        infoList.add(activity.getString(R.string.textPlayerInsanePoints) +       " " +
+                stringNumberSubtract(player1Info.getInsanePoints(), player2Info.getInsanePoints()));
+        infoList.add(activity.getString(R.string.textPlayer1InsaneRank) +         " " +       player1Info.getInsaneRank());
+        infoList.add(activity.getString(R.string.textPlayer2InsaneRank) +         " " +       player2Info.getInsaneRank());
+
+        infoList.add(activity.getString(R.string.textPlayerDummyPoints) +        " " +
+                stringNumberSubtract(player1Info.getDummyPoints(), player2Info.getDummyPoints()));
+        infoList.add(activity.getString(R.string.textPlayer1DummyRank) +          " " +       player1Info.getDummyRank());
+        infoList.add(activity.getString(R.string.textPlayer2DummyRank) +          " " +       player2Info.getDummyRank());
+
+        infoList.add(activity.getString(R.string.textPlayerDDMaxPoints) +        " " +
+                stringNumberSubtract(player1Info.getDdmaxPoints(), player2Info.getDdmaxPoints()));
+        infoList.add(activity.getString(R.string.textPlayer1DDMaxRank) +          " " +       player1Info.getDdmaxRank());
+        infoList.add(activity.getString(R.string.textPlayer2DDMaxRank) +          " " +       player2Info.getDdmaxRank());
+
+        infoList.add(activity.getString(R.string.textPlayerSoloPoints) +         " " +
+                stringNumberSubtract(player1Info.getSoloPoints(), player2Info.getSoloPoints()));
+        infoList.add(activity.getString(R.string.textPlayer1SoloRank) +           " " +       player1Info.getSoloRank());
+        infoList.add(activity.getString(R.string.textPlayer2SoloRank) +           " " +       player2Info.getSoloRank());
+
+        infoList.add(activity.getString(R.string.textPlayerOldschoolPoints) +    " " +
+                stringNumberSubtract(player1Info.getOldschoolPoints(), player2Info.getOldschoolPoints()));
+        infoList.add(activity.getString(R.string.textPlayer1OldschoolRank) +      " " +       player1Info.getOldschoolRank());
+        infoList.add(activity.getString(R.string.textPlayer2OldschoolRank) +      " " +       player2Info.getOldschoolRank());
+
+        infoList.add(activity.getString(R.string.textPlayerRacePoints) +         " " +
+                stringNumberSubtract(player1Info.getRacePoints(), player2Info.getRacePoints()));
+        infoList.add(activity.getString(R.string.textPlayer1RaceRank) +           " " +       player1Info.getRaceRank());
+        infoList.add(activity.getString(R.string.textPlayer2RaceRank) +           " " +       player2Info.getRaceRank());
+
+        compareInfoList.postValue(infoList);
+    }
+
+    private String stringNumberSubtract(String number1, String number2) {
+        String tempString;
+        int tempInt;
+
+        try {
+            tempInt = Integer.parseInt(number1) - Integer.parseInt(number2);
+        }
+        catch (NumberFormatException e) {
+            return "Error in stringNumberSubtract";
+        }
+
+        if (tempInt > 0) {
+            tempString = "+" + tempInt;
+        }
+        else {
+            tempString = Integer.toString(tempInt);
+        }
+        return tempString;
     }
 }

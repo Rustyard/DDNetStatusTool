@@ -11,28 +11,31 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/textPlayerIDHint"
+        android:hint="@string/textPlayer1IDHint"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextComparePlayerID2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextComparePlayerID2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextComparePlayerID2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextComparePlayerID2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/textPlayerIDHint"
+        android:hint="@string/textPlayer2IDHint"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCompare"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextComparePlayerID1" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextComparePlayerID1"
+        android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonCompare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/textCompare"
@@ -45,11 +48,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
-        android:layout_height="446dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.627"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextComparePlayerID2"
         app:layout_constraintVertical_bias="0.945" />
 </androidx.constraintlayout.widget.ConstraintLayout>

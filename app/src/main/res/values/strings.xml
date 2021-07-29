@@ -6,35 +6,100 @@
     <string name="textCompare">Compare</string>
     <string name="textExit">Exit</string>
     <string name="textPlayerIDHint">Input player name</string>
+    <string name="textPlayer1IDHint">Input player1 name</string>
+    <string name="textPlayer2IDHint">Input player2 name</string>
     <string name="textSearch">Search</string>
 
     <string name="textPlayerID">Player ID: </string>
+    <string name="textPlayer1ID">Player 1 ID: </string>
+    <string name="textPlayer2ID">Player 2 ID: </string>
+
     <string name="textPlayerTotalRank">Rank (total points): </string>
+    <string name="textPlayer1TotalRank">Rank (total points, player1):</string>
+    <string name="textPlayer2TotalRank">Rank (total points, player2):</string>
+
     <string name="textPlayerTotalPoints">Total Points: </string>
+
     <string name="textPlayerFirstFinish">First Finish: </string>
+    <string name="textPlayer1FirstFinish">First Finish (player1): </string>
+    <string name="textPlayer2FirstFinish">First Finish (player2): </string>
+
     <string name="textPlayerLastFinish">Last Finish: </string>
+    <string name="textPlayer1LastFinish">Last Finish (player1): </string>
+    <string name="textPlayer2LastFinish">Last Finish (player2): </string>
+
     <string name="textPlayerMonthlyPoints">Points (monthly): </string>
+
     <string name="textPlayerMonthlyRank">Rank (monthly): </string>
+    <string name="textPlayer1MonthlyRank">Rank (monthly, player1): </string>
+    <string name="textPlayer2MonthlyRank">Rank (monthly, player2): </string>
+
     <string name="textPlayerWeeklyPoints">Points (weekly): </string>
+
     <string name="textPlayerWeeklyRank">Rank (weekly): </string>
+    <string name="textPlayer1WeeklyRank">Rank (weekly, player1): </string>
+    <string name="textPlayer2WeeklyRank">Rank (weekly, player2): </string>
+
     <string name="textPlayerNovicePoints">Points (novice): </string>
+
     <string name="textPlayerNoviceRank">Rank (novice): </string>
+    <string name="textPlayer1NoviceRank">Rank (novice, player1): </string>
+    <string name="textPlayer2NoviceRank">Rank (novice, player2): </string>
+
     <string name="textPlayerModeratePoints">Points (moderate): </string>
+
     <string name="textPlayerModerateRank">Rank (moderate): </string>
+    <string name="textPlayer1ModerateRank">Rank (moderate, player1): </string>
+    <string name="textPlayer2ModerateRank">Rank (moderate, player2): </string>
+
     <string name="textPlayerBrutalPoints">Points (brutal): </string>
+
     <string name="textPlayerBrutalRank">Rank (brutal): </string>
+    <string name="textPlayer1BrutalRank">Rank (brutal, player1): </string>
+    <string name="textPlayer2BrutalRank">Rank (brutal, player2): </string>
+
     <string name="textPlayerInsanePoints">Points (insane): </string>
+
     <string name="textPlayerInsaneRank">Rank (insane): </string>
+    <string name="textPlayer1InsaneRank">Rank (insane, player1): </string>
+    <string name="textPlayer2InsaneRank">Rank (insane, player2): </string>
+
     <string name="textPlayerDummyPoints">Points (dummy): </string>
+
     <string name="textPlayerDummyRank">Rank (dummy): </string>
+    <string name="textPlayer1DummyRank">Rank (dummy, player1): </string>
+    <string name="textPlayer2DummyRank">Rank (dummy, player2): </string>
+
     <string name="textPlayerDDMaxPoints">Points (DDMax): </string>
+
     <string name="textPlayerDDMaxRank">Rank (DDMax): </string>
+    <string name="textPlayer1DDMaxRank">Rank (DDMax, player1): </string>
+    <string name="textPlayer2DDMaxRank">Rank (DDMax, player2): </string>
+
+
     <string name="textPlayerSoloPoints">Points (solo): </string>
+
     <string name="textPlayerSoloRank">Rank (solo): </string>
+    <string name="textPlayer1SoloRank">Rank (solo, player1): </string>
+    <string name="textPlayer2SoloRank">Rank (solo, player2): </string>
+
     <string name="textPlayerOldschoolPoints">Points (oldschool): </string>
+
     <string name="textPlayerOldschoolRank">Rank (oldschool): </string>
+    <string name="textPlayer1OldschoolRank">Rank (oldschool, player1): </string>
+    <string name="textPlayer2OldschoolRank">Rank (oldschool, player2): </string>
+
     <string name="textPlayerRacePoints">Points (race): </string>
+
     <string name="textPlayerRaceRank">Rank (race): </string>
+    <string name="textPlayer1RaceRank">Rank (race, player1): </string>
+    <string name="textPlayer2RaceRank">Rank (race, player2): </string>
+
     <string name="textNoData">No Data</string>
     <string name="textLoading">Loading…</string>
+    <string name="textNoPlayer">No such player found.</string>
+    <string name="textNoPlayerAtLeast">At least one player name is not found.</string>
+    <string name="textTimeout">Timeout, try again.</string>
+    <string name="textWentWrong">Oops, something went wrong!</string>
+    <string name="textCompareTwoPlayers">Player1 stats compared to player2\'s: </string>
 </resources>

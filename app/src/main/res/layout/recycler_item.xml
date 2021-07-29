@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical">
@@ -7,7 +8,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#C4EEFF"
+        android:background="@drawable/border"
+        android:fontFamily="sans-serif-black"
         android:textAlignment="textStart"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:typeface="normal"
+        tools:text="Player ID: Rustyard" />
 </FrameLayout>
