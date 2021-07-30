@@ -65,7 +65,7 @@ public class PlayerInfoViewModel extends ViewModel {
         info.setPlayerID(UnicodeID.parse(playerID));
 
         try {
-            ddnetPage = Jsoup.connect("https://ddnet.tw/players/" + playerID + "/").get();
+            ddnetPage = Jsoup.connect("https://ddnet.tw/players/" + info.getPlayerID() + "/").get();
         }
         catch (HttpStatusException httpStatusException) {
             return STATUS_NO_PLAYER;
@@ -258,7 +258,7 @@ public class PlayerInfoViewModel extends ViewModel {
         if (player1Info.getPlayerID().isEmpty()) {
             ArrayList<String> temp = new ArrayList<>();
             temp.add(activity.getString(R.string.textNoData));
-            p1InfoList.setValue(temp);
+            p1InfoList.postValue(temp);
             return;
         }
 
@@ -311,7 +311,7 @@ public class PlayerInfoViewModel extends ViewModel {
         if (player1Info.getPlayerID().isEmpty() || player2Info.getPlayerID().isEmpty()) {
             ArrayList<String> temp = new ArrayList<>();
             temp.add(activity.getString(R.string.textNoData));
-            p1InfoList.setValue(temp);
+            p1InfoList.postValue(temp);
             return;
         }
 
@@ -401,7 +401,7 @@ public class PlayerInfoViewModel extends ViewModel {
             return "Error in stringNumberSubtract";
         }
 
-        if (tempInt > 0) {
+        if (tempInt >= 0) {
             tempString = "+" + tempInt;
         }
         else {

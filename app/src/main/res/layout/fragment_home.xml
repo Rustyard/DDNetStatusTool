@@ -10,21 +10,22 @@
         android:id="@+id/buttonPlayerSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="@string/textPlayerSearch"
         app:layout_constraintBottom_toTopOf="@+id/buttonCompareEntry"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonCompareEntry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
         android:text="@string/textCompare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonPlayerSearch"
-        app:layout_constraintStart_toStartOf="@+id/buttonPlayerSearch"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPlayerSearch" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/buttonPlayerSearch" />
 
     <ImageView
         android:id="@+id/imageViewTitle"
@@ -32,11 +33,12 @@
         android:layout_height="211dp"
         android:contentDescription="@string/describeTitlePic"
         android:src="@drawable/ic_ddnet2"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.096" />
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -45,7 +47,6 @@
         android:fontFamily="casual"
         android:text="@string/textStatusTool"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPlayerSearch"
         app:layout_constraintEnd_toEndOf="@+id/imageViewTitle"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/imageViewTitle"
